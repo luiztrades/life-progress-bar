@@ -8,38 +8,48 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #222;
-            color: #fff;
-            padding: 10px;
+            background-color: #fff; /* Fundo branco */
+            color: #333; /* Cor do texto escura para contraste */
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 10px; /* Distância do título para as barras */
         }
         .progress-container {
             width: 100%;
-            max-width: 250px; /* Largura reduzida */
-            margin: 8px auto;
-            background: #333;
-            padding: 8px; /* Padding ajustado */
+            max-width: 230px; /* Largura reduzida para 230px */
+            margin: 5px auto;
+            background: #f0f0f0; /* Fundo claro para o container */
+            padding: 8px;
             border-radius: 8px;
-            box-shadow: 0 3px 6px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
         .progress-bar {
-            height: 12px; /* Altura reduzida */
+            height: 12px; /* Altura ajustada para 12px */
             border-radius: 5px;
             position: relative;
             text-align: center;
             color: white;
             font-weight: bold;
             line-height: 12px;
-            background-color: #888;
         }
         .progress-label {
             margin-bottom: 4px;
             font-weight: bold;
-            color: #ddd;
+            color: #444;
         }
+
+        /* Cores vivas para as barras */
+        #year-progress { background-color: #4CAF50; } /* Verde */
+        #semester-progress { background-color: #2196F3; } /* Azul */
+        #quarter-progress { background-color: #FF9800; } /* Laranja */
+        #month-progress { background-color: #FF5722; } /* Vermelho */
+        #week-progress { background-color: #9C27B0; } /* Roxo */
+        #day-progress { background-color: #00BCD4; } /* Ciano */
     </style>
 </head>
 <body>
-    <h2>Life Progress</h2> <!-- Título ajustado -->
+    <h2>Life Progress</h2> <!-- Título movido para cima -->
     <div class="progress-container">
         <div class="progress-label">Ano</div>
         <div class="progress-bar" id="year-progress">0%</div>
