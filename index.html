@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Progress Bar</title>
+    <title>Life Progress</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #222;
             color: #fff;
-            padding: 20px;
+            padding: 10px;
         }
         .progress-container {
             width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
+            max-width: 250px; /* Largura reduzida */
+            margin: 8px auto;
             background: #333;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            padding: 8px; /* Padding ajustado */
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(255, 255, 255, 0.1);
         }
         .progress-bar {
-            height: 20px;
+            height: 12px; /* Altura reduzida */
             border-radius: 5px;
             position: relative;
             text-align: center;
             color: white;
             font-weight: bold;
-            line-height: 20px;
+            line-height: 12px;
             background-color: #888;
         }
         .progress-label {
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: bold;
             color: #ddd;
         }
     </style>
 </head>
 <body>
-    <h2>Life Progress Bar</h2>
+    <h2>Life Progress</h2> <!-- Título ajustado -->
     <div class="progress-container">
         <div class="progress-label">Ano</div>
         <div class="progress-bar" id="year-progress">0%</div>
