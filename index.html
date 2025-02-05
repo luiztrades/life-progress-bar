@@ -10,7 +10,8 @@
             text-align: center;
             background-color: #f4f4f4; /* Fundo claro */
             color: #333;
-            padding: 15px; /* Menor espaço ao redor */
+            padding: 0;
+            margin: 0;
         }
         h2 {
             margin-top: 0;
@@ -54,30 +55,32 @@
     </style>
 </head>
 <body>
-    <h2>Life Progress</h2>
-    <div class="progress-container">
-        <div class="progress-label">Ano</div>
-        <div class="progress-bar" id="year-progress">0%</div>
-    </div>
-    <div class="progress-container">
-        <div class="progress-label">Semestre</div>
-        <div class="progress-bar" id="semester-progress">0%</div>
-    </div>
-    <div class="progress-container">
-        <div class="progress-label">Trimestre</div>
-        <div class="progress-bar" id="quarter-progress">0%</div>
-    </div>
-    <div class="progress-container">
-        <div class="progress-label">Mês</div>
-        <div class="progress-bar" id="month-progress">0%</div>
-    </div>
-    <div class="progress-container">
-        <div class="progress-label">Semana</div>
-        <div class="progress-bar" id="week-progress">0%</div>
-    </div>
-    <div class="progress-container">
-        <div class="progress-label">Dia</div>
-        <div class="progress-bar" id="day-progress">0%</div>
+    <div style="height: 405px; overflow: hidden;">
+        <h2>Life Progress</h2>
+        <div class="progress-container">
+            <div class="progress-label">Ano</div>
+            <div class="progress-bar" id="year-progress">0%</div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-label">Semestre</div>
+            <div class="progress-bar" id="semester-progress">0%</div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-label">Trimestre</div>
+            <div class="progress-bar" id="quarter-progress">0%</div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-label">Mês</div>
+            <div class="progress-bar" id="month-progress">0%</div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-label">Semana</div>
+            <div class="progress-bar" id="week-progress">0%</div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-label">Dia</div>
+            <div class="progress-bar" id="day-progress">0%</div>
+        </div>
     </div>
     
     <script>
