@@ -13,11 +13,12 @@
             padding: 20px;
         }
         h2 {
+            margin-top: 0; /* Removendo a margem superior */
             margin-bottom: 10px; /* Distância do título para as barras */
         }
         .progress-container {
             width: 100%;
-            max-width: 230px; /* Largura reduzida para 230px */
+            max-width: 230px; /* Largura ajustada para 230px */
             margin: 5px auto;
             background: #f0f0f0; /* Fundo claro para o container */
             padding: 8px;
@@ -25,14 +26,14 @@
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
         .progress-bar {
-            height: 12px; /* Altura ajustada para 12px */
+            height: 15px; /* Aumentando a altura para 15px */
             border-radius: 5px;
             position: relative;
             text-align: center;
             color: white;
             font-weight: bold;
-            font-size: 8px; /* Tamanho da fonte da porcentagem reduzido */
-            line-height: 12px;
+            font-size: 10px; /* Tamanho da fonte da porcentagem ajustado para 10px */
+            line-height: 15px; /* Ajustando para o alinhamento */
         }
         .progress-label {
             margin-bottom: 4px;
@@ -40,10 +41,10 @@
             color: #444;
         }
 
-        /* Cores agrupadas conforme sua solicitação */
-        #year-progress, #semester-progress { background-color: #4CAF50; } /* Tons de verde */
-        #quarter-progress, #month-progress { background-color: #FF5722; } /* Tons de laranja e vermelho */
-        #week-progress, #day-progress { background-color: #9C27B0; } /* Tons de roxo e azul */
+        /* Cores semelhantes */
+        #year-progress, #semester-progress { background-color: #2196F3; } /* Azul claro */
+        #quarter-progress, #month-progress { background-color: #FF9800; } /* Laranja */
+        #week-progress, #day-progress { background-color: #4CAF50; } /* Verde */
     </style>
 </head>
 <body>
