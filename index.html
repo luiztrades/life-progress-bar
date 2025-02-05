@@ -8,32 +8,32 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #fff; /* Fundo branco */
-            color: #333; /* Cor do texto escura para contraste */
+            background-color: #f4f4f4; /* Fundo mais claro */
+            color: #333;
             padding: 20px;
         }
         h2 {
-            margin-top: 0; /* Removendo a margem superior */
-            margin-bottom: 10px; /* Distância do título para as barras */
+            margin-top: 0;
+            margin-bottom: 10px;
         }
         .progress-container {
             width: 100%;
-            max-width: 230px; /* Largura ajustada para 230px */
+            max-width: 230px; /* Largura mantida em 230px */
             margin: 5px auto;
-            background: #f0f0f0; /* Fundo claro para o container */
+            background: #fff; /* Fundo branco */
             padding: 8px;
             border-radius: 8px;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
         .progress-bar {
-            height: 15px; /* Aumentando a altura para 15px */
+            height: 20px; /* Aumentando a altura das barras para 20px */
             border-radius: 5px;
             position: relative;
             text-align: center;
             color: white;
             font-weight: bold;
-            font-size: 10px; /* Tamanho da fonte da porcentagem ajustado para 10px */
-            line-height: 15px; /* Ajustando para o alinhamento */
+            font-size: 12px; /* Ajustando o tamanho da fonte para 12px */
+            line-height: 20px; /* Alinhamento da porcentagem no centro */
         }
         .progress-label {
             margin-bottom: 4px;
@@ -41,19 +41,19 @@
             color: #444;
         }
 
-        /* Cores ajustadas, com tonalidades diferentes dentro de cada grupo */
-        #year-progress { background-color: #1E88E5; } /* Azul mais forte */
-        #semester-progress { background-color: #42A5F5; } /* Azul mais claro */
+        /* Cores ajustadas conforme a solicitação */
+        #year-progress { background-color: #8E24AA; } /* Roxo */
+        #semester-progress { background-color: #D32F2F; } /* Vermelho */
         
-        #quarter-progress { background-color: #FF7043; } /* Laranja mais forte */
-        #month-progress { background-color: #FFCC80; } /* Laranja mais suave */
+        #quarter-progress { background-color: #FF9800; } /* Laranja */
+        #month-progress { background-color: #FFEB3B; } /* Amarelo */
         
-        #week-progress { background-color: #388E3C; } /* Verde mais escuro */
-        #day-progress { background-color: #66BB6A; } /* Verde mais claro */
+        #week-progress { background-color: #43A047; } /* Verde */
+        #day-progress { background-color: #1E88E5; } /* Azul */
     </style>
 </head>
 <body>
-    <h2>Life Progress</h2> <!-- Título movido para cima -->
+    <h2>Life Progress</h2>
     <div class="progress-container">
         <div class="progress-label">Ano</div>
         <div class="progress-bar" id="year-progress">0%</div>
