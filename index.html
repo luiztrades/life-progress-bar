@@ -8,26 +8,20 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #fff;
-            color: #000;
+            background-color: #191919;
+            color: #ffffff;
             padding: 0;
             margin: 0;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        
-        .dark-mode {
-            background-color: #121212;
-            color: #ffffff;
         }
         
         .progress-container {
             width: 100%;
-            max-width: 250px;
+            max-width: 300px;
             margin: 10px auto;
-            background: #1e1e1e;
+            background: #222;
             padding: 10px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -67,8 +61,6 @@
     </style>
 </head>
 <body>
-    <button onclick="toggleDarkMode()">Alternar Tema</button>
-    <div style="height: 30px;"></div>
     <div class="progress-container">
         <div class="progress-label">Ano</div>
         <div class="progress-bar-container">
@@ -133,10 +125,6 @@
             updateBar("month-progress", getProgress(startOfMonth, new Date(startOfMonth.getFullYear(), startOfMonth.getMonth() + 1, 1)));
             updateBar("week-progress", getProgress(startOfWeek, new Date(startOfWeek.getFullYear(), startOfWeek.getMonth(), startOfWeek.getDate() + 7)));
             updateBar("day-progress", getProgress(startOfDay, new Date(startOfDay.getFullYear(), startOfDay.getMonth(), startOfDay.getDate() + 1)));
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
         }
 
         updateProgress();
