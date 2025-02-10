@@ -15,11 +15,9 @@
             transition: background-color 0.3s, color 0.3s;
         }
         
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212;
-                color: #ffffff;
-            }
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
         }
         
         .progress-container {
@@ -69,6 +67,7 @@
     </style>
 </head>
 <body>
+    <button onclick="toggleDarkMode()">Alternar Tema</button>
     <div style="height: 30px;"></div>
     <div class="progress-container">
         <div class="progress-label">Ano</div>
@@ -134,6 +133,10 @@
             updateBar("month-progress", getProgress(startOfMonth, new Date(startOfMonth.getFullYear(), startOfMonth.getMonth() + 1, 1)));
             updateBar("week-progress", getProgress(startOfWeek, new Date(startOfWeek.getFullYear(), startOfWeek.getMonth(), startOfWeek.getDate() + 7)));
             updateBar("day-progress", getProgress(startOfDay, new Date(startOfDay.getFullYear(), startOfDay.getMonth(), startOfDay.getDate() + 1)));
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
         }
 
         updateProgress();
