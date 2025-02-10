@@ -20,26 +20,36 @@
                 background-color: #121212;
                 color: #ffffff;
             }
-            .progress-container {
-                background: #1e1e1e;
-                box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
-            }
-            .progress-label {
-                color: #ffffff;
-            }
         }
         
         .progress-container {
             width: 100%;
-            max-width: 230px;
+            max-width: 250px;
             margin: 10px auto;
-            background: #f0f0f0;
+            background: #1e1e1e;
             padding: 10px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .progress-label {
+            font-weight: bold;
+            color: #ffffff;
+            flex: 1;
+            text-align: left;
+            padding-left: 10px;
+        }
+        .progress-bar-container {
+            flex: 2;
+            background: #333;
+            border-radius: 5px;
+            height: 18px;
+            overflow: hidden;
         }
         .progress-bar {
-            height: 18px;
+            height: 100%;
             border-radius: 5px;
             position: relative;
             text-align: center;
@@ -48,11 +58,6 @@
             font-size: 12px;
             line-height: 18px;
             width: 0%;
-        }
-        .progress-label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
         }
         
         #year-progress { background-color: #7B1FA2; }
@@ -67,27 +72,39 @@
     <div style="height: 30px;"></div>
     <div class="progress-container">
         <div class="progress-label">Ano</div>
-        <div class="progress-bar" id="year-progress">0%</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="year-progress">0%</div>
+        </div>
     </div>
     <div class="progress-container">
         <div class="progress-label">Semestre</div>
-        <div class="progress-bar" id="semester-progress">0%</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="semester-progress">0%</div>
+        </div>
     </div>
     <div class="progress-container">
         <div class="progress-label">Trimestre</div>
-        <div class="progress-bar" id="quarter-progress">0%</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="quarter-progress">0%</div>
+        </div>
     </div>
     <div class="progress-container">
         <div class="progress-label">Mês</div>
-        <div class="progress-bar" id="month-progress">0%</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="month-progress">0%</div>
+        </div>
     </div>
     <div class="progress-container">
         <div class="progress-label">Semana</div>
-        <div class="progress-bar" id="week-progress">0%</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="week-progress">0%</div>
+        </div>
     </div>
     <div class="progress-container">
         <div class="progress-label">Dia</div>
-        <div class="progress-bar" id="day-progress">0%</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="day-progress">0%</div>
+        </div>
     </div>
 
     <script>
