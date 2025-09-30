@@ -14,12 +14,17 @@
         padding: 20px;
     }
 
+    /* Fundo com bordas arredondadas como no WidgetBox */
     .progress-wrapper {
         display: flex;
         flex-direction: column;
         width: 90%;
         max-width: 600px;
         gap: 12px;
+        background: #e0e0e0; /* fundo do card */
+        border-radius: 16px; /* cantos arredondados */
+        padding: 16px;
+        box-sizing: border-box;
     }
 
     .progress-row {
@@ -41,8 +46,8 @@
         flex: 1;
         display: flex;
         height: 20px;
-        background: #f0f0f0; /* colado no fundo do body */
-        border-radius: 12px; /* bordas arredondadas do container */
+        background: transparent; /* sem cor de fundo */
+        border-radius: 12px; /* cantos arredondados */
         overflow: hidden;
         position: relative;
     }
@@ -50,12 +55,12 @@
     .progress-bar {
         height: 100%;
         transition: width 1s ease-in-out;
-        border-radius: 12px; /* cantos arredondados da barra */
+        border-radius: 12px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         padding-right: 6px;
-        color: #000; /* porcentagem em preto */
+        color: #000; /* porcentagem preta */
         font-weight: 600;
         font-size: 12px;
         box-sizing: border-box;
@@ -134,7 +139,6 @@ function updateProgress() {
         const bar = document.getElementById(idBar);
         bar.style.width = progress + '%';
         bar.textContent = progress + '%';
-        // mantém bordas arredondadas
         bar.style.borderTopRightRadius = progress >= 100 ? '12px' : '12px';
         bar.style.borderBottomRightRadius = progress >= 100 ? '12px' : '12px';
     }
@@ -148,8 +152,4 @@ function updateProgress() {
 }
 
 updateProgress();
-setInterval(updateProgress, 60000);
-</script>
-
-</body>
-</html>
+setInterval(updateProgress, 60
