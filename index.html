@@ -41,8 +41,8 @@
         flex: 1;
         display: flex;
         height: 20px; /* barra maior */
-        background: #e0e0e0;
-        border-radius: 12px; /* arredondado */
+        background: #e0e0e0; /* fundo cinza claro */
+        border-radius: 12px;
         overflow: hidden;
         position: relative;
     }
@@ -50,25 +50,25 @@
     .progress-bar {
         height: 100%;
         transition: width 1s ease-in-out;
-        border-radius: 12px; /* arredondado no início */
+        border-radius: 12px 0 0 12px; /* arredondado apenas no início */
         display: flex;
-        justify-content: flex-end; /* para colocar a % no final */
+        justify-content: flex-end; /* % no final do preenchimento */
         align-items: center;
         padding-right: 6px;
-        color: #555; /* cinza escuro */
+        color: #555; /* % cinza escuro */
         font-weight: 600;
         font-size: 12px;
-        box-sizing: border-box;
         white-space: nowrap;
+        box-sizing: border-box;
     }
 
-    /* cores individuais */
-    #year-progress { background: linear-gradient(90deg, #FF5F7E, #FF9A5B); }
-    #semester-progress { background: linear-gradient(90deg, #FF9A5B, #FFD25B); }
-    #quarter-progress { background: linear-gradient(90deg, #FFD25B, #4CAF50); }
-    #month-progress { background: linear-gradient(90deg, #4CAF50, #2196F3); }
-    #week-progress { background: linear-gradient(90deg, #2196F3, #9C27B0); }
-    #day-progress { background: linear-gradient(90deg, #9C27B0, #FF5F7E); }
+    /* cores individuais para cada período */
+    #year-progress { background: #FF5F7E; }
+    #semester-progress { background: #FF9A5B; }
+    #quarter-progress { background: #FFD25B; }
+    #month-progress { background: #4CAF50; }
+    #week-progress { background: #2196F3; }
+    #day-progress { background: #9C27B0; }
 </style>
 </head>
 <body>
@@ -134,9 +134,12 @@ function updateProgress() {
         const bar = document.getElementById(idBar);
         bar.style.width = progress + '%';
         bar.textContent = progress + '%';
-        // manter borda arredondada apenas se não estiver em 100%
-        bar.style.borderTopRightRadius = progress >= 100 ? '12px' : '12px';
-        bar.style.borderBottomRightRadius = progress >= 100 ? '12px' : '12px';
+        // bordas arredondadas no final se 100%
+        if(progress >= 100) {
+            bar.style.borderRadius = '12px';
+        } else {
+            bar.style.borderRadius = '12px 0 0 12px';
+        }
     }
 
     updateBar("year-progress", getProgress(startOfYear,new Date(now.getFullYear()+1,0,1)));
