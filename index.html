@@ -1,102 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress Tracker</title>
+    <title>Life Progress</title>
+
+    <!-- Fonte moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #191919;
+            font-family: 'Poppins', sans-serif;
+            background: #0f0f0f;
             color: #ffffff;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .progress-container {
-            width: 100%;
-            max-width: 300px;
-            margin: 15px auto; /* Menor espaçamento entre barras */
-            background: #222;
-            padding: 8px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 20px;
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 320px;
+            margin: 12px 0;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
         }
 
         .progress-title {
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 6px; /* Menor espaçamento entre título e barra */
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 14px;
+            text-transform: uppercase;
+            opacity: 0.85;
         }
 
         .progress-bar-container {
             width: 100%;
-            background: #333;
-            border-radius: 5px;
-            height: 16px; /* Diminuí a altura das barras */
+            height: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             overflow: hidden;
         }
 
         .progress-bar {
             height: 100%;
-            border-radius: 5px;
-            position: relative;
-            text-align: center;
+            border-radius: 8px;
+            text-align: right;
+            padding-right: 6px;
+            font-size: 10px;
+            line-height: 14px;
+            font-weight: 600;
             color: white;
-            font-weight: bold;
-            font-size: 10px; /* Tamanho de fonte menor */
-            line-height: 16px;
             width: 0%;
+            transition: width 1s ease-in-out;
+            background: linear-gradient(90deg, #FF0080, #7928CA);
         }
-        
-        #year-progress { background-color: #7B1FA2; }
-        #semester-progress { background-color: #D32F2F; }
-        #quarter-progress { background-color: #FF9800; }
-        #month-progress { background-color: #FBC02D; }
-        #week-progress { background-color: #388E3C; }
-        #day-progress { background-color: #1976D2; }
     </style>
 </head>
 <body>
+
     <div class="progress-container">
         <div class="progress-title">Ano</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="year-progress">0%</div>
-        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="year-progress">0%</div></div>
     </div>
     <div class="progress-container">
         <div class="progress-title">Semestre</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="semester-progress">0%</div>
-        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="semester-progress">0%</div></div>
     </div>
     <div class="progress-container">
         <div class="progress-title">Trimestre</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="quarter-progress">0%</div>
-        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="quarter-progress">0%</div></div>
     </div>
     <div class="progress-container">
         <div class="progress-title">Mês</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="month-progress">0%</div>
-        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="month-progress">0%</div></div>
     </div>
     <div class="progress-container">
         <div class="progress-title">Semana</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="week-progress">0%</div>
-        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="week-progress">0%</div></div>
     </div>
     <div class="progress-container">
         <div class="progress-title">Dia</div>
-        <div class="progress-bar-container">
-            <div class="progress-bar" id="day-progress">0%</div>
-        </div>
+        <div class="progress-bar-container"><div class="progress-bar" id="day-progress">0%</div></div>
     </div>
 
     <script>
