@@ -8,54 +8,61 @@
 <style>
     body {
         font-family: 'Poppins', sans-serif;
-        background: #f0f0f0; /* fundo cinza claro */
+        background: #f0f0f0;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
         padding: 20px;
     }
 
-    .progress-container {
-        width: 100%;
-        max-width: 320px;
-        margin: 12px 0;
-        padding: 12px;
-        background: #e0e0e0; /* fundo cinza widget box */
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .progress-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        max-width: 600px;
+        gap: 12px;
+    }
+
+    .progress-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .progress-title {
+        width: 100px;
         font-weight: 600;
-        margin-bottom: 6px;
-        font-size: 14px;
+        text-transform: capitalize;
         color: #333;
-        text-transform: capitalize; /* primeira letra maiúscula */
+        font-size: 14px;
+        flex-shrink: 0;
     }
 
     .progress-bar-container {
-        width: 100%;
-        height: 12px; /* barra fina */
-        background: rgba(0,0,0,0.05);
-        border-radius: 8px;
+        flex: 1;
+        display: flex;
+        height: 20px; /* barra maior */
+        background: #e0e0e0;
+        border-radius: 12px;
         overflow: hidden;
+        position: relative;
     }
 
     .progress-bar {
         height: 100%;
-        border-radius: 8px;
-        text-align: right;
-        padding-right: 6px;
-        font-size: 10px;
-        line-height: 12px;
-        font-weight: 600;
-        color: white;
-        width: 0%;
         transition: width 1s ease-in-out;
-        background: linear-gradient(90deg, #FF5F7E, #FF9A5B);
     }
 
-    /* cores individuais para cada período */
+    .progress-percent {
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 600;
+        color: #555; /* cinza escuro */
+        font-size: 12px; /* um pouco maior */
+    }
+
+    /* cores individuais */
     #year-progress { background: linear-gradient(90deg, #FF5F7E, #FF9A5B); }
     #semester-progress { background: linear-gradient(90deg, #FF9A5B, #FFD25B); }
     #quarter-progress { background: linear-gradient(90deg, #FFD25B, #4CAF50); }
@@ -66,29 +73,49 @@
 </head>
 <body>
 
-<div class="progress-container">
-    <div class="progress-title">Ano</div>
-    <div class="progress-bar-container"><div class="progress-bar" id="year-progress">0%</div></div>
-</div>
-<div class="progress-container">
-    <div class="progress-title">Semestre</div>
-    <div class="progress-bar-container"><div class="progress-bar" id="semester-progress">0%</div></div>
-</div>
-<div class="progress-container">
-    <div class="progress-title">Trimestre</div>
-    <div class="progress-bar-container"><div class="progress-bar" id="quarter-progress">0%</div></div>
-</div>
-<div class="progress-container">
-    <div class="progress-title">Mês</div>
-    <div class="progress-bar-container"><div class="progress-bar" id="month-progress">0%</div></div>
-</div>
-<div class="progress-container">
-    <div class="progress-title">Semana</div>
-    <div class="progress-bar-container"><div class="progress-bar" id="week-progress">0%</div></div>
-</div>
-<div class="progress-container">
-    <div class="progress-title">Dia</div>
-    <div class="progress-bar-container"><div class="progress-bar" id="day-progress">0%</div></div>
+<div class="progress-wrapper">
+    <div class="progress-row">
+        <div class="progress-title">Ano</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="year-progress"></div>
+            <div class="progress-percent" id="year-percent">0%</div>
+        </div>
+    </div>
+    <div class="progress-row">
+        <div class="progress-title">Semestre</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="semester-progress"></div>
+            <div class="progress-percent" id="semester-percent">0%</div>
+        </div>
+    </div>
+    <div class="progress-row">
+        <div class="progress-title">Trimestre</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="quarter-progress"></div>
+            <div class="progress-percent" id="quarter-percent">0%</div>
+        </div>
+    </div>
+    <div class="progress-row">
+        <div class="progress-title">Mês</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="month-progress"></div>
+            <div class="progress-percent" id="month-percent">0%</div>
+        </div>
+    </div>
+    <div class="progress-row">
+        <div class="progress-title">Semana</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="week-progress"></div>
+            <div class="progress-percent" id="week-percent">0%</div>
+        </div>
+    </div>
+    <div class="progress-row">
+        <div class="progress-title">Dia</div>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="day-progress"></div>
+            <div class="progress-percent" id="day-percent">0%</div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -96,10 +123,9 @@ function updateProgress() {
     const now = new Date();
     const startOfYear = new Date(now.getFullYear(), 0, 1);
     const startOfSemester = new Date(now.getFullYear(), now.getMonth() < 6 ? 0 : 6, 1);
-    const startOfQuarter = new Date(now.getFullYear(), Math.floor(now.getMonth() / 3) * 3, 1);
+    const startOfQuarter = new Date(now.getFullYear(), Math.floor(now.getMonth()/3)*3, 1);
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
-    // semana começa no domingo 00:00
     const startOfWeek = new Date(now);
     startOfWeek.setHours(0,0,0,0);
     startOfWeek.setDate(now.getDate() - now.getDay()); // domingo
@@ -110,22 +136,23 @@ function updateProgress() {
         return Math.round(((now - start) / (end - start)) * 100);
     }
 
-    function updateBar(id, progress) {
-        const bar = document.getElementById(id);
+    function updateBar(idBar, idPercent, progress) {
+        const bar = document.getElementById(idBar);
+        const percent = document.getElementById(idPercent);
         bar.style.width = progress + '%';
-        bar.textContent = progress + '%';
+        percent.textContent = progress + '%';
     }
 
-    updateBar("year-progress", getProgress(startOfYear, new Date(now.getFullYear()+1,0,1)));
-    updateBar("semester-progress", getProgress(startOfSemester, new Date(startOfSemester.getFullYear(), startOfSemester.getMonth()+6,1)));
-    updateBar("quarter-progress", getProgress(startOfQuarter, new Date(startOfQuarter.getFullYear(), startOfQuarter.getMonth()+3,1)));
-    updateBar("month-progress", getProgress(startOfMonth, new Date(startOfMonth.getFullYear(), startOfMonth.getMonth()+1,1)));
-    updateBar("week-progress", getProgress(startOfWeek, new Date(startOfWeek.getFullYear(), startOfWeek.getMonth(), startOfWeek.getDate()+7)));
-    updateBar("day-progress", getProgress(startOfDay, new Date(startOfDay.getFullYear(), startOfDay.getMonth(), startOfDay.getDate()+1)));
+    updateBar("year-progress","year-percent", getProgress(startOfYear,new Date(now.getFullYear()+1,0,1)));
+    updateBar("semester-progress","semester-percent", getProgress(startOfSemester,new Date(startOfSemester.getFullYear(),startOfSemester.getMonth()+6,1)));
+    updateBar("quarter-progress","quarter-percent", getProgress(startOfQuarter,new Date(startOfQuarter.getFullYear(),startOfQuarter.getMonth()+3,1)));
+    updateBar("month-progress","month-percent", getProgress(startOfMonth,new Date(startOfMonth.getFullYear(),startOfMonth.getMonth()+1,1)));
+    updateBar("week-progress","week-percent", getProgress(startOfWeek,new Date(startOfWeek.getFullYear(),startOfWeek.getMonth(),startOfWeek.getDate()+7)));
+    updateBar("day-progress","day-percent", getProgress(startOfDay,new Date(startOfDay.getFullYear(),startOfDay.getMonth(),startOfDay.getDate()+1)));
 }
 
 updateProgress();
-setInterval(updateProgress, 60*1000); // atualiza a cada minuto
+setInterval(updateProgress, 60000);
 </script>
 
 </body>
