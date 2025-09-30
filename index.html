@@ -41,8 +41,8 @@
         flex: 1;
         display: flex;
         height: 20px;
-        background: #f0f0f0; /* mesmo fundo do body */
-        border-radius: 12px;
+        background: #f0f0f0; /* colado no fundo do body */
+        border-radius: 12px; /* bordas arredondadas do container */
         overflow: hidden;
         position: relative;
     }
@@ -50,7 +50,7 @@
     .progress-bar {
         height: 100%;
         transition: width 1s ease-in-out;
-        border-radius: 12px;
+        border-radius: 12px; /* cantos arredondados da barra */
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -134,6 +134,7 @@ function updateProgress() {
         const bar = document.getElementById(idBar);
         bar.style.width = progress + '%';
         bar.textContent = progress + '%';
+        // mantém bordas arredondadas
         bar.style.borderTopRightRadius = progress >= 100 ? '12px' : '12px';
         bar.style.borderBottomRightRadius = progress >= 100 ? '12px' : '12px';
     }
