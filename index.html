@@ -1,149 +1,210 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Life Progress</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
 <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-        background: transparent; /* fundo transparente */
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-    }
+  :root{
+    --mold-bg: #f0f0f0;       /* molde (card) */
+    --container-bg: rgba(0,0,0,0.04); /* fundo da parte não preenchida da barra */
+    --radius: 12px;
+  }
 
-    .progress-wrapper {
-        display: flex;
-        flex-direction: column;
-        width: 90%;
-        max-width: 600px;
-        gap: 12px;
-        background: #f0f0f0; /* molde */
-        border-radius: 16px;
-        padding: 16px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+  html,body{
+    height:100%;
+    margin:0;
+    background: transparent; /* body transparente conforme pedido */
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .progress-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+  .wrap {
+    display:flex;
+    justify-content:center;
+    padding:20px;
+    box-sizing:border-box;
+  }
 
-    .progress-title {
-        width: 120px;
-        font-weight: 400; /* sem negrito */
-        text-transform: capitalize;
-        color: #333;
-        font-size: 14px;
-        flex-shrink: 0;
-    }
+  /* MOLDE: cor igual ao que combinamos, bordas arredondadas, maior largura */
+  .progress-wrapper {
+    width: calc(100% - 40px); /* fica bem próximo das bordas do viewport/padding */
+    max-width: 1100px;        /* limita para evitar esticar demais em telas enormes */
+    background: var(--mold-bg);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
 
-    .progress-bar-container {
-        flex: 1;
-        display: flex;
-        height: 20px;
-        background: transparent; /* parte vazia transparente */
-        border-radius: 12px;
-        overflow: hidden;
-        position: relative;
-    }
+  .progress-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
 
-    .progress-bar {
-        height: 100%;
-        transition: width 1s ease-in-out;
-        border-radius: 12px;
-        font-size: 12px;
-        white-space: nowrap;
-    }
+  /* etiqueta com nome + % (sem negrito) */
+  .progress-title{
+    width:140px; /* maior para caber "Nome 100%" sem quebra */
+    font-weight:400; /* sem negrito */
+    text-transform: capitalize;
+    color:#333;
+    font-size:14px;
+    flex-shrink:0;
+  }
 
-    /* cores */
-    #year-progress { background: linear-gradient(90deg, #FF5F7E, #FF9A5B); }
-    #semester-progress { background: linear-gradient(90deg, #FF9A5B, #FFD25B); }
-    #quarter-progress { background: linear-gradient(90deg, #FFD25B, #4CAF50); }
-    #month-progress { background: linear-gradient(90deg, #4CAF50, #2196F3); }
-    #week-progress { background: linear-gradient(90deg, #2196F3, #9C27B0); }
-    #day-progress { background: linear-gradient(90deg, #9C27B0, #FF5F7E); }
+  /* contêiner da barra: mostra o fundo vazio (agora visível) */
+  .progress-bar-container{
+    flex:1;
+    height:22px; /* ligeiramente maior */
+    background: var(--container-bg); /* mostra o 'vazio' */
+    border-radius: var(--radius);
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* parte preenchida (gradiente) */
+  .progress-bar{
+    height:100%;
+    width:0%;
+    transition: width 900ms cubic-bezier(.2,.8,.2,1);
+    border-radius: var(--radius);
+    box-sizing:border-box;
+  }
+
+  /* gradientes por item (mantive as cores que você aprovou) */
+  #year-progress { background: linear-gradient(90deg,#FF5F7E,#FF9A5B); }
+  #semester-progress { background: linear-gradient(90deg,#FF9A5B,#FFD25B); }
+  #quarter-progress { background: linear-gradient(90deg,#FFD25B,#4CAF50); }
+  #month-progress { background: linear-gradient(90deg,#4CAF50,#2196F3); }
+  #week-progress { background: linear-gradient(90deg,#2196F3,#9C27B0); }
+  #day-progress { background: linear-gradient(90deg,#9C27B0,#FF5F7E); }
+
+  /* garantir que o preenchimento sempre tenha cantos arredondados visualmente */
+  .progress-bar::after{
+    content:"";
+    position:absolute;
+    right:0;
+    top:0;
+    bottom:0;
+    width:1px; /* pequeno truque para manter render arredondado em alguns navegadores */
+    background:transparent;
+    border-top-right-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+    pointer-events: none;
+  }
+
+  @media (max-width:520px){
+    .progress-title{ width:110px; font-size:13px; }
+    .progress-bar-container{ height:18px; }
+  }
 </style>
 </head>
 <body>
-
-<div class="progress-wrapper">
-    <div class="progress-row">
+  <div class="wrap">
+    <div class="progress-wrapper">
+      <div class="progress-row">
         <div class="progress-title" id="year-label">Ano</div>
         <div class="progress-bar-container">
-            <div class="progress-bar" id="year-progress"></div>
+          <div class="progress-bar" id="year-progress"></div>
         </div>
-    </div>
-    <div class="progress-row">
+      </div>
+
+      <div class="progress-row">
         <div class="progress-title" id="semester-label">Semestre</div>
         <div class="progress-bar-container">
-            <div class="progress-bar" id="semester-progress"></div>
+          <div class="progress-bar" id="semester-progress"></div>
         </div>
-    </div>
-    <div class="progress-row">
+      </div>
+
+      <div class="progress-row">
         <div class="progress-title" id="quarter-label">Trimestre</div>
         <div class="progress-bar-container">
-            <div class="progress-bar" id="quarter-progress"></div>
+          <div class="progress-bar" id="quarter-progress"></div>
         </div>
-    </div>
-    <div class="progress-row">
+      </div>
+
+      <div class="progress-row">
         <div class="progress-title" id="month-label">Mês</div>
         <div class="progress-bar-container">
-            <div class="progress-bar" id="month-progress"></div>
+          <div class="progress-bar" id="month-progress"></div>
         </div>
-    </div>
-    <div class="progress-row">
+      </div>
+
+      <div class="progress-row">
         <div class="progress-title" id="week-label">Semana</div>
         <div class="progress-bar-container">
-            <div class="progress-bar" id="week-progress"></div>
+          <div class="progress-bar" id="week-progress"></div>
         </div>
-    </div>
-    <div class="progress-row">
+      </div>
+
+      <div class="progress-row">
         <div class="progress-title" id="day-label">Dia</div>
         <div class="progress-bar-container">
-            <div class="progress-bar" id="day-progress"></div>
+          <div class="progress-bar" id="day-progress"></div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
 <script>
-function updateProgress() {
+(function(){
+  function updateProgress(){
     const now = new Date();
-    const startOfYear = new Date(now.getFullYear(), 0, 1);
+
+    const startOfYear = new Date(now.getFullYear(),0,1);
+    const endOfYear   = new Date(now.getFullYear()+1,0,1);
+
     const startOfSemester = new Date(now.getFullYear(), now.getMonth() < 6 ? 0 : 6, 1);
+    const endOfSemester   = new Date(startOfSemester.getFullYear(), startOfSemester.getMonth()+6, 1);
+
     const startOfQuarter = new Date(now.getFullYear(), Math.floor(now.getMonth()/3)*3, 1);
+    const endOfQuarter   = new Date(startOfQuarter.getFullYear(), startOfQuarter.getMonth()+3, 1);
+
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const endOfMonth   = new Date(startOfMonth.getFullYear(), startOfMonth.getMonth()+1, 1);
+
+    // semana começa no domingo 00:00
     const startOfWeek = new Date(now);
     startOfWeek.setHours(0,0,0,0);
-    startOfWeek.setDate(now.getDate() - now.getDay());
+    startOfWeek.setDate(now.getDate() - now.getDay()); // domingo
+    const endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate()+7);
+
     const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const endOfDay   = new Date(startOfDay);
+    endOfDay.setDate(startOfDay.getDate()+1);
 
-    function getProgress(start, end) {
-        return Math.round(((now - start) / (end - start)) * 100);
+    function pct(start,end){
+      return Math.round(((now - start) / (end - start)) * 100);
     }
 
-    function updateBar(idBar, labelId, progress) {
-        const bar = document.getElementById(idBar);
-        const label = document.getElementById(labelId);
-        
-        label.textContent = label.textContent.split(" ")[0] + " " + progress + "%";
-        bar.style.width = progress + '%';
+    function apply(idBar, idLabel, value){
+      value = Math.max(0, Math.min(100, value));
+      const bar = document.getElementById(idBar);
+      const label = document.getElementById(idLabel);
+      bar.style.width = value + '%';
+      // label fica "Nome 75%"
+      const base = label.dataset.base || label.textContent.split(" ")[0];
+      label.textContent = base + " " + value + "%";
+      label.dataset.base = base;
     }
 
-    updateBar("year-progress", "year-label", getProgress(startOfYear,new Date(now.getFullYear()+1,0,1)));
-    updateBar("semester-progress", "semester-label", getProgress(startOfSemester,new Date(startOfSemester.getFullYear(),startOfSemester.getMonth()+6,1)));
-    updateBar("quarter-progress", "quarter-label", getProgress(startOfQuarter,new Date(startOfQuarter.getFullYear(),startOfQuarter.getMonth()+3,1)));
-    updateBar("month-progress", "month-label", getProgress(startOfMonth,new Date(startOfMonth.getFullYear(),startOfMonth.getMonth()+1,1)));
-    updateBar("week-progress", "week-label", getProgress(startOfWeek,new Date(startOfWeek.getFullYear(),startOfWeek.getMonth(),startOfWeek.getDate()+7)));
-    updateBar("day-progress", "day-label", getProgress(startOfDay,new Date(startOfDay.getFullYear(),startOfDay.getMonth(),startOfDay.getDate()+1)));
-}
+    apply("year-progress","year-label", pct(startOfYear,endOfYear));
+    apply("semester-progress","semester-label", pct(startOfSemester,endOfSemester));
+    apply("quarter-progress","quarter-label", pct(startOfQuarter,endOfQuarter));
+    apply("month-progress","month-label", pct(startOfMonth,endOfMonth));
+    apply("week-progress","week-label", pct(startOfWeek,endOfWeek));
+    apply("day-progress","day-label", pct(startOfDay,endOfDay));
+  }
 
-updateProgress();
-setInterval(updateProgress, 60000);
+  updateProgress();
+  // atualiza a cada 30s pra ficar responsivo quando a página fica aberta
+  setInterval(updateProgress, 30*1000);
+})();
 </script>
-
 </body>
 </html>
